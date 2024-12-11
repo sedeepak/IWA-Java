@@ -9,3 +9,4 @@ steps:
     autoDetectBuildTool: true
     quiet: false
     downloadDebugLogs: false
+    scanCentralClientToken: '$(ScanCentral.ClientToken)'
