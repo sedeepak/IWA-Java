@@ -1,3 +1,5 @@
+pool:
+  default
 steps:
 - task: fortifyvsts-dev.hpe-security-fortify-vsts.build-task-fortify-scancentral-sast.FortifyScanCentralSAST@7
   displayName: 'Fortify ScanCentral SAST Assessment'
