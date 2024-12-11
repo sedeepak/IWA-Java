@@ -1,0 +1,12 @@
+pool:
+  default
+steps:
+- task: fortifyvsts-dev.hpe-security-fortify-vsts.build-task-fortify-scancentral-sast.FortifyScanCentralSAST@7
+  displayName: 'Fortify ScanCentral SAST Assessment'
+  inputs:
+    scanCentralCtrlUrl: 'https://sc-s15-ctrl8.fortifylab.net:8443/scancentral-ctrl '
+    uploadToSSC: false
+    autoDetectBuildTool: true
+    quiet: false
+    downloadDebugLogs: false
+    scanCentralClientToken: '$(ScanCentral.ClientToken)'
