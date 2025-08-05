@@ -13,7 +13,7 @@ steps:
 - task: fortifyvsts-dev.hpe-security-fortify-vsts.build-task-fortify-sca-install.InstallFortifySCA@8
   inputs:
     version: '25.4.0'  # Specify the version of SCA you need
-    downloadLocation: 'https://fortifyfiler.fortifylab.net/Builds/SCA/25.4.0/25.4.0.0094/Windows/'
+    downloadLocation: 'https://fortifyfiler.fortifylab.net/Builds/SCA/25.4.0/25.4.0.0094/Windows/OpenText_SAST_Fortify_windows-x64_25.4.0.exe'
     installDirectory: '$(Agent.TempDirectory)/Fortify'
     acceptEULA: true
 
