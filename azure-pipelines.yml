@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'windows-latest'
+  name: 'OTX-HDFKLX3'
 
 steps:
 - task: fortifyvsts-dev.hpe-security-fortify-vsts.build-task-fortify-sca-install.InstallFortifySCA@8
