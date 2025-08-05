@@ -9,12 +9,23 @@ trigger:
 pool:
   name: 'default'
 
+variables:
+  fortifyDownloadUrl: 'https://fortifyfiler.fortifylab.net/Builds/SCA/25.4.0/25.4.0.0094/Windows/OpenText_SAST_Fortify_windows-x64_25.4.0.exe'
+  fortifyInstallDir: 'C:/Tools/Fortify'
+
 steps:
+- task: PowerShell@2
+  displayName: 'Download Fortify SCA'
+  inputs:
+    targetType: 'inline'
+    script: |
+      $output = "$(Agent.TempDirectory)\OpenText_SAST_Fortify_windows-x64_25.4.0.exe"
+      Invoke-WebRequest -Uri "$(fortifyDownloadUrl)" -OutFile $output
 - task: fortifyvsts-dev.hpe-security-fortify-vsts.build-task-fortify-sca-install.InstallFortifySCA@8
   inputs:
     version: '25.4.0'  # Specify the version of SCA you need
-    downloadLocation: 'https://fortifyfiler.fortifylab.net/Builds/SCA/25.4.0/25.4.0.0094/Windows/OpenText_SAST_Fortify_windows-x64_25.4.0.exe'
-    installDirectory: '$(Agent.TempDirectory)/Fortify'
+    InstallerPath: '$(Agent.TempDirectory)\OpenText_SAST_Fortify_windows-x64_25.4.0.exe'
+    LicenseFile: '$(Agent.TempDirectory)\fortify.license'
     acceptEULA: true
 
 # Optional: Add to PATH for next tasks
