@@ -1,0 +1,23 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'windows-latest'
+
+steps:
+- task: fortifyvsts-dev.hpe-security-fortify-vsts.build-task-fortify-sca-install.InstallFortifySCA@8
+  inputs:
+    version: '25.4.0'  # Specify the version of SCA you need
+    downloadLocation: 'https://fortifyfiler.fortifylab.net/Builds/SCA/25.4.0/25.4.0.0094/Windows/'
+    installDirectory: '$(Agent.TempDirectory)/Fortify'
+    acceptEULA: true
+
+# Optional: Add to PATH for next tasks
+- script: |
+    echo "##vso[task.prependpath]$(Agent.TempDirectory)/Fortify/bin"
+  displayName: 'Add Fortify to PATH'
